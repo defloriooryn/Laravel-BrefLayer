@@ -1,0 +1,15 @@
+service: Laravel-Bref
+provider:
+    name: aws
+    region: ap-southeast-1
+    stage: production
+    runtime: provided.al2
+plugins:
+    - ./vendor/bref/bref
+functions:
+    app:
+        handler: public/index.php
+        layers:
+            - ${bref:layer.php-81-fpm}
+        events:
+            - httpApi: '*'
